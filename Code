@@ -1,0 +1,27 @@
+class TaskManager:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, title, priority='medium'):
+        task = {
+            'title': title,
+            'priority': priority,
+            'completed': False
+        }
+        self.tasks.append(task)
+
+    def mark_completed(self, title):
+        for task in self.tasks:
+            if task['title'] == title:
+                task['completed'] = True
+                return True
+        return False
+
+    def get_pending_tasks(self):
+        return [task for task in self.tasks if not task['completed']]
+
+    def get_all_tasks(self):
+        return self.tasks
+
+    def remove_task(self, title):
+        self.tasks = [task for task in self.tasks if task['title'] != title]
